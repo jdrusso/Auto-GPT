@@ -21,9 +21,6 @@ def playsound(filename):
     pygame.mixer.music.load(filename)
     pygame.mixer.music.play()
 
-    while pygame.mixer.music.get_busy():
-        time.sleep(1)
-
 def eleven_labs_speech(text, voice_index=0):
     tts_url = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}".format(
         voice_id=voices[voice_index])
