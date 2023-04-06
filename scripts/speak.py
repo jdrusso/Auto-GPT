@@ -1,5 +1,7 @@
 import os
-from playsound import playsound
+import pygame
+import time
+#from playsound import playsound
 import requests
 from config import Config
 cfg = Config()
@@ -13,6 +15,14 @@ tts_headers = {
     "Content-Type": "application/json",
     "xi-api-key": cfg.elevenlabs_api_key
 }
+
+def playsound(filename):
+    pygame.mixer.init()
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.play()
+
+    while pygame.mixer.music.get_busy():
+        time.sleep(1)
 
 def eleven_labs_speech(text, voice_index=0):
     tts_url = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}".format(
